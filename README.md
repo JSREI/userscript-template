@@ -47,7 +47,7 @@ npm install
 
 在项目根目录下的`userscript-headers.js`文件中存放的是默认的油猴头文件，在`webpack`编译的时候会把这个文件放到编译后的文件的头部作为油猴的插件声明：
 
-```
+```js
 // ==UserScript==
 // @name         ${name}
 // @namespace    ${repository}
@@ -60,9 +60,32 @@ npm install
 // ==/UserScript==
 ```
 
-`${name}`、`${version}`这种是支持的一些变量，在编译的时候会从`package.json`中获取对应的值替换掉，这样对于这些可能会重复或者一直变的内容我们就可以从一个源引用使用而不用重复设置或者反复修改了。
+`${name}`、`${version}`这种是支持的一些变量，在编译的时候会从`package.json`中获取对应的值替换掉，这样对于这些可能会重复或者一直变的内容我们就可以从一个源引用使用而不用重复设置或者反复修改了，如果默认的配置不能满足你的要求，你可以直接修改这个头文件，比如为其增加权限：
 
-然后就可以开心的写代码了，在编写代码的时候你可以使用npm命令为项目添加依赖，对于一个稍微复杂点的脚本而言很可能会引用外部的依赖：
+```js
+// ==UserScript==
+// @name         ${name}
+// @namespace    ${repository}
+// @version      ${version}
+// @description  ${description}
+// @document     ${document}
+// @author       ${author}
+// @match        *://*/*
+// @run-at       document-start
+// @grant        GM_getValue
+// @grant        GM_setValue
+// @grant        GM_registerMenuCommand
+// @grant        GM.getValue
+// @grant        GM.setValuex
+// @grant        GM.registerMenuCommand
+// ==/UserScript==
+```
+
+除了变量替换其他内容都会被原样保留，这是编译后的样子：
+
+![image-20230817004653299](README.assets/image-20230817004653299.png)
+
+然后就可以开心的写代码了，在编写代码的时候你可以使用`npm`命令为项目添加依赖，对于一个稍微复杂点的脚本而言很可能会引用外部的依赖：
 
 ```bash
 npm add xxx
