@@ -1,8 +1,11 @@
 {
   "name": "userscript-foo",
   "version": "0.0.1",
+  "description": "this is userscript's description",
   "main": "index.js",
   "repository": "https://github.com/JSREI/userscript-template.git",
+  "namespace": "https://github.com/JSREI/userscript-template.git",
+  "document": "https://github.com/JSREI/userscript-template.git",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "watch": "webpack --watch --config webpack.dev.js"
