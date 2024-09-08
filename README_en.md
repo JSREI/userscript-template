@@ -1,5 +1,7 @@
 # UserScript Template 
 
+[English](README_en.md) | [中文](README.md)
+
 # 1. What is this?
 
 A plan for using `Node.js` + `Webpack` for modular development of Tampermonkey scripts, aimed at improving the development experience of Tampermonkey, reducing the mental burden during development, and allowing Tampermonkey scripts to be developed like a regular modular front-end project. Otherwise, a `JavaScript` file with thousands of lines to be modified back and forth is really too much to handle...
