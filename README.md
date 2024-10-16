@@ -1,6 +1,6 @@
 # UserScript Template 
 
- [English](README_en.md) | [中文](README.md)
+简体中文| [English](./README_en.md)
 
 # 一、这是什么
 
