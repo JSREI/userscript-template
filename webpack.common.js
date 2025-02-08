@@ -32,6 +32,21 @@ module.exports = {
                 userscriptHeaders = userscriptHeaders.replaceAll("${document}", webpackPackageJson["document"] || "");
                 userscriptHeaders = userscriptHeaders.replaceAll("${author}", webpackPackageJson["author"] || "");
                 userscriptHeaders = userscriptHeaders.replaceAll("${repository}", webpackPackageJson["repository"] || "");
+
+                // 如果存在 banner 的话，则读取插入
+                const bannerFilePath = "./banner.txt";
+                if (fs.existsSync(bannerFilePath)) {
+                    let banner = fs.readFileSync(bannerFilePath).toString("utf-8");
+                    banner = banner.replaceAll("${name}", webpackPackageJson["name"] || "");
+                    banner = banner.replaceAll("${namespace}", webpackPackageJson["namespace"] || "");
+                    banner = banner.replaceAll("${version}", webpackPackageJson["version"] || "");
+                    banner = banner.replaceAll("${description}", webpackPackageJson["description"] || "");
+                    banner = banner.replaceAll("${document}", webpackPackageJson["document"] || "");
+                    banner = banner.replaceAll("${author}", webpackPackageJson["author"] || "");
+                    banner = banner.replaceAll("${repository}", webpackPackageJson["repository"] || "");
+                    userscriptHeaders += "\n" + banner.split("\n").join("\n//    ") + "\n";
+                }
+
                 return userscriptHeaders;
             }
         }),
