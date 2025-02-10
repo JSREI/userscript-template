@@ -2,6 +2,8 @@
 
 简体中文| [English](./README_en.md)
 
+官网链接： https://jsrei.github.io/userscript-template/#usage
+
 # 一、这是什么
 
 使用`Node.js`+`Webpack`模块化开发油猴脚本的方案，用于提升油猴开发体验，降低开发时的心智负担，让油猴脚本也能当做一个普通的模块化的前端项目来开发，要不然一个`JavaScript`文件几千行来回改本人真的有点顶不住......
