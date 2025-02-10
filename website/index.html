@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserScript Template - 油猴脚本开发模板</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e3eeff 100%);
+            text-align: center;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to bottom, #ffffff, #f8faff);
+            padding: 40px 0 60px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: visible;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 15px 0 60px;
+        }
+
+        header.scrolled h1 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        header.scrolled p {
+            font-size: 0.95em;
+            margin: 5px 0 15px;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #4299e1, #667eea);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 600;
+            color: #1a365d;
+        }
+
+        header p {
+            margin: 10px 0 25px;
+            color: #4a5568;
+            font-size: 1.1em;
+        }
+
+        nav {
+            position: relative;
+            margin: 0;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            border-radius: 50px;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        nav ul li a {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #4299e1, #667eea);
+            border-radius: 25px;
+            opacity: 0;
+            z-index: -1;
+            transform: scale(0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav ul li a:hover {
+            color: white;
+        }
+
+        nav ul li a:hover::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        nav ul li a.active {
+            color: white;
+        }
+
+        nav ul li a.active::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 30px 0 50px;
+            }
+
+            header.scrolled {
+                padding: 15px 0 50px;
+            }
+
+            .nav-container.fixed {
+                top: 10px;
+                padding: 5px 0;
+            }
+
+            nav {
+                width: 90%;
+                padding: 5px;
+            }
+
+            .container {
+                padding: 30px 15px;
+            }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #f8faff, #ffffff);
+            border-radius: 20px;
+            padding: 35px;
+            width: 100%;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, #4299e1, #667eea);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card h2 {
+            color: #1a365d;
+            margin-top: 0;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .card ul {
+            padding-left: 20px;
+            color: #4a5568;
+        }
+
+        .card li {
+            margin: 10px 0;
+        }
+
+        /* 更新代码块样式 */
+        pre {
+            position: relative;
+            background: #ffffff;  /* 改为白色背景 */
+            padding: 20px;
+            padding-top: 45px;
+            border-radius: 12px;
+            color: #2d3748;  /* 更新文字颜色 */
+            overflow: hidden;
+            font-size: 0.9em;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* 窗口标题栏 */
+        pre::before {
+            content: 'Terminal';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 35px;
+            background: #f8fafc;  /* 更浅的背景色 */
+            color: #718096;
+            font-size: 0.8em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: system-ui, -apple-system, sans-serif;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 窗口控制按钮 */
+        pre::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            display: flex;
+            gap: 6px;
+        }
+
+        .window-controls {
+            position: absolute;
+            top: 11px;
+            left: 12px;
+            display: flex;
+            gap: 6px;
+            z-index: 2;
+        }
+
+        .window-control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .window-control.close {
+            background: #ff5f56;
+        }
+
+        .window-control.minimize {
+            background: #ffbd2e;
+        }
+
+        .window-control.maximize {
+            background: #27c93f;
+        }
+
+        .window-control:hover::before {
+            opacity: 1;
+        }
+
+        .window-control::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .window-control.close::before {
+            width: 6px;
+            height: 2px;
+            background: rgba(0, 0, 0, 0.5);
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .window-control.close::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 2px;
+            background: rgba(0, 0, 0, 0.5);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .window-control.close:hover::after {
+            opacity: 1;
+        }
+
+        .window-control.minimize::before {
+            width: 6px;
+            height: 2px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .window-control.maximize::before {
+            width: 6px;
+            height: 6px;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            background: none;
+        }
+
+        /* 复制按钮样式 */
+        .copy-button {
+            position: absolute;
+            top: 7px;
+            right: 8px;
+            padding: 4px 10px;
+            background: #edf2f7;  /* 更新背景色 */
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 0.75em;
+            color: #718096;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 20px;
+            z-index: 1;
+        }
+
+        .copy-button:hover {
+            background: #e2e8f0;
+            border-color: #cbd5e0;
+            color: #4a5568;
+        }
+
+        .copy-button svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+            transition: fill 0.2s ease;
+        }
+
+        .copy-button.copied {
+            background: #48bb78;  /* 成功状态的绿色 */
+            color: white;
+            border-color: #48bb78;
+            pointer-events: none;
+        }
+
+        .copy-button.copied svg {
+            fill: white;
+        }
+
+        /* 代码内容区域 */
+        pre code {
+            display: block;
+            overflow-x: auto;
+            padding: 0;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            line-height: 1.5;
+            color: #2d3748;  /* 确保代码文字颜色正确 */
+        }
+
+        /* 滚动条样式 */
+        pre code::-webkit-scrollbar {
+            height: 6px;
+            background: #f7fafc;
+        }
+
+        pre code::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 3px;
+        }
+
+        pre code::-webkit-scrollbar-track {
+            background: #f7fafc;
+            border-radius: 3px;
+        }
+
+        /* 代码语法高亮颜色 - 可选 */
+        .token.comment,
+        .token.prolog,
+        .token.doctype,
+        .token.cdata {
+            color: #718096;
+        }
+
+        .token.punctuation {
+            color: #4a5568;
+        }
+
+        .token.property,
+        .token.tag,
+        .token.boolean,
+        .token.number,
+        .token.constant,
+        .token.symbol,
+        .token.deleted {
+            color: #805ad5;
+        }
+
+        .token.selector,
+        .token.attr-name,
+        .token.string,
+        .token.char,
+        .token.builtin,
+        .token.inserted {
+            color: #38a169;
+        }
+
+        .token.operator,
+        .token.entity,
+        .token.url,
+        .language-css .token.string,
+        .style .token.string {
+            color: #3182ce;
+        }
+
+        footer {
+            background: linear-gradient(to top, #ffffff, #f8faff);
+            padding: 20px 0;
+            color: #718096;
+            box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #4299e1, #667eea);
+        }
+
+        .github-stats {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            color: white;
+            background: #4299e1;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .github-link:hover {
+            background: #3182ce;
+            transform: translateY(-2px);
+        }
+
+        .github-link .text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+        }
+
+        .github-link .star-count {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 500;
+        }
+
+        .github-link .star-count svg {
+            width: 16px;
+            height: 16px;
+            fill: #ffd700;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: linear-gradient(145deg, #f1f5ff, #ffffff);
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            border: 1px solid rgba(66, 153, 225, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            color: #4299e1;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-text h3 {
+            margin: 0 0 8px;
+            color: #2d3748;
+            font-size: 1.1em;
+        }
+
+        .feature-text p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95em;
+        }
+
+        .steps {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+        }
+
+        .steps li {
+            position: relative;
+            padding-left: 45px;
+            margin-bottom: 25px;
+        }
+
+        .steps li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background: #4299e1;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .note {
+            background: linear-gradient(145deg, #fff8e6, #fffdf5);
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #856404;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 15px 0;
+        }
+
+        /* 添加 Tab 样式 */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding: 3px;
+            background: rgba(66, 153, 225, 0.1);
+            border-radius: 8px;
+            display: inline-flex;
+        }
+
+        .tab-button {
+            padding: 8px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 0.95em;
+            color: #4a5568;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .tab-button:hover {
+            color: #2d3748;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .tab-button.active {
+            color: #2d3748;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 更新图片样式 */
+        .demo-image {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: white;
+            padding: 10px;
+        }
+
+        /* 图片预览相关样式 */
+        .image-preview-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: zoom-out;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-preview-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .image-preview-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+        }
+
+        .image-preview-container img {
+            max-width: 100%;
+            max-height: 90vh;
+            margin: 0;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-preview {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .close-preview:hover {
+            background: #f8f9fa;
+            transform: scale(1.1);
+        }
+
+        .close-preview::before,
+        .close-preview::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 2px;
+            background: #4a5568;
+            transform-origin: center;
+        }
+
+        .close-preview::before {
+            transform: rotate(45deg);
+        }
+
+        .close-preview::after {
+            transform: rotate(-45deg);
+        }
+
+        .demo-image {
+            cursor: zoom-in;
+        }
+
+        /* 固定导航栏容器 */
+        .nav-container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            text-align: center;
+            transform: translateY(50%);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container.fixed {
+            position: fixed;
+            top: 15px;
+            bottom: auto;
+            transform: translateY(0);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+            padding: 10px 0;
+        }
+
+        .nav-container.fixed::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -10px;
+            height: 10px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.95));
+        }
+
+        /* 更新仓库链接样式 */
+        .repo-link {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #4299e1, #667eea);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 10px 0;
+            box-shadow: 0 4px 15px rgba(66, 153, 225, 0.2);
+            overflow: hidden;
+        }
+
+        .repo-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(66, 153, 225, 0.3);
+        }
+
+        .repo-link .text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+        }
+
+        .repo-link .text svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .repo-link .star-count {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 16px;
+            background: rgba(0, 0, 0, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .repo-link .star-count svg {
+            width: 16px;
+            height: 16px;
+            fill: #ffd700;
+        }
+
+        /* 折叠面板样式 */
+        .collapsible {
+            margin: 0;
+            background: transparent;
+        }
+
+        .collapsible-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+        }
+
+        .collapsible-header:hover {
+            color: #4299e1;
+        }
+
+        .collapsible-arrow {
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .collapsible-arrow svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .collapsible.active .collapsible-arrow {
+            transform: rotate(90deg);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-left: 24px;
+        }
+
+        .collapsible.active .collapsible-content {
+            max-height: 1000px;  /* 根据实际内容调整 */
+        }
+
+        .collapsible-body {
+            padding: 10px 0;
+        }
+
+        .collapsible-body ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .collapsible-body li {
+            margin: 15px 0;
+        }
+
+        .collapsible-body img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 更新提示框样式 */
+        .note {
+            background: #fff8e6;
+            border-left: 4px solid #ffc107;
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #856404;
+        }
+
+        .note .collapsible-header {
+            padding: 0;
+            color: inherit;
+        }
+
+        .note .collapsible-content {
+            margin-left: 24px;
+            color: #666;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border-radius: 12px;
+            background: linear-gradient(145deg, #f1f5ff, #ffffff);
+            border: 1px solid rgba(66, 153, 225, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            color: #4299e1;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-text h3 {
+            margin: 0 0 8px;
+            color: #2d3748;
+            font-size: 1.1em;
+        }
+
+        .feature-text p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>UserScript Template</h1>
+    <p>使用 Node.js + Webpack 模块化开发油猴脚本的高效方案</p>
+    <div class="nav-container">
+        <nav>
+            <ul>
+                <li><a href="#features" class="active">特性</a></li>
+                <li><a href="#quick-start">快速开始</a></li>
+                <li><a href="#usage">使用指南</a></li>
+                <li><a href="#repository">GitHub</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card" id="features">
+        <h2>核心特性</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-icon">📦</div>
+                <div class="feature-text">
+                    <h3>模块化开发</h3>
+                    <p>不再需要在单个 JavaScript 文件中组织代码，而是采用WebPack模块化管理代码，提升开发体验与效率</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔄</div>
+                <div class="feature-text">
+                    <h3>热加载支持</h3>
+                    <p>开发时修改代码自动编译打包加载，让测试更高效</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-text">
+                    <h3>符合商店要求</h3>
+                    <p>打包后为高可读性的单文件，完全符合油猴商店上架政策</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🚀</div>
+                <div class="feature-text">
+                    <h3>发布友好</h3>
+                    <p>打包后生成高可读性的单文件脚本，完全符合油猴商店的上架要求，无需额外处理</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" id="quick-start">
+        <h2>快速开始</h2>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="npm-guide">npm</button>
+            <button class="tab-button" data-tab="yarn-guide">yarn</button>
+        </div>
+        
+        <div class="tab-content active" data-tab="npm-guide">
+            <ol class="steps">
+                <li>
+                    <h3>创建项目</h3>
+                    <p>在 GitHub 模板仓库选择 "Use this template" 创建新仓库</p>
+                    <a href="https://github.com/JSREI/userscript-template" target="_blank" class="repo-link">
+                        <span class="text">
+                            <svg viewBox="0 0 16 16">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                            </svg>
+                            前往模板仓库
+                        </span>
+                        <span class="star-count">
+                            <svg viewBox="0 0 16 16">
+                                <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
+                            </svg>
+                            <span id="quick-start-star-count">Loading...</span>
+                        </span>
+                    </a>
+                    <img src="images/image-20230816233501101.png" alt="创建项目示例" class="demo-image">
+                </li>
+                <li>
+                    <h3>安装依赖</h3>
+                    <pre><code>git clone [你的仓库地址]
+cd [项目目录]
+npm install</code></pre>
+                </li>
+                <li>
+                    <h3>开发调试</h3>
+                    <pre><code>npm run watch</code></pre>
+                </li>
+                <li>
+                    <h3>构建发布</h3>
+                    <pre><code>npm run build</code></pre>
+                </li>
+            </ol>
+        </div>
+
+        <div class="tab-content" data-tab="yarn-guide">
+            <ol class="steps">
+                <li>
+                    <h3>创建项目</h3>
+                    <p>在 GitHub 模板仓库选择 "Use this template" 创建新仓库</p>
+                    <a href="https://github.com/JSREI/userscript-template" target="_blank" class="repo-link">
+                        <span class="text">
+                            <svg viewBox="0 0 16 16">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                            </svg>
+                            前往模板仓库
+                        </span>
+                        <span class="star-count">
+                            <svg viewBox="0 0 16 16">
+                                <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
+                            </svg>
+                            <span id="quick-start-star-count">Loading...</span>
+                        </span>
+                    </a>
+                    <img src="images/image-20230816233501101.png" alt="创建项目示例" class="demo-image">
+                </li>
+                <li>
+                    <h3>安装依赖</h3>
+                    <pre><code>git clone [你的仓库地址]
+cd [项目目录]
+yarn install</code></pre>
+                </li>
+                <li>
+                    <h3>开发调试</h3>
+                    <pre><code>yarn watch</code></pre>
+                </li>
+                <li>
+                    <h3>构建发布</h3>
+                    <pre><code>yarn build</code></pre>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="card" id="usage">
+        <h2>油猴本地调试指南</h2>
+        <p>在开发过程中，您需要在油猴中创建一个指向本地文件的脚本。具体步骤如下：</p>
+
+        <ol class="steps">
+            <li>
+                <h3>创建新脚本</h3>
+                <p>在油猴扩展中创建新脚本，复制以下基础配置：</p>
+                <pre><code>// ==UserScript==
+// @name         [你的脚本名称]
+// @namespace    [你的仓库地址]
+// @version      0.0.1
+// @description  [脚本描述]
+// @author       [作者名称]
+// @match        *://*/*
+// @run-at       document-start
+// @require      file://[本地项目路径]/dist/index.js
+// ==/UserScript==
+
+(() => {})();</code></pre>
+            </li>
+
+            <li>
+                <h3>配置文件访问权限</h3>
+                <div class="note">
+                    <div class="collapsible">
+                        <div class="collapsible-header">
+                            <div class="collapsible-arrow">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/>
+                                </svg>
+                            </div>
+                            <strong>注意：</strong> 开发时需要在油猴扩展设置中允许访问文件网址，否则无法使用本地文件调试。
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="collapsible-body">
+                                <p>请按照以下步骤开启文件网址访问权限：</p>
+                                <ol>
+                                    <li>在浏览器插件图标上右键，选择"管理扩展程序"：</li>
+                                    <img src="images/image-20240723005213833.png" alt="管理扩展程序">
+                                    <li>确保"允许访问文件网址"开关是打开的：</li>
+                                    <img src="images/image-20240723005321887.png" alt="允许访问文件网址">
+                                </ol>
+                                <p>完成以上设置后，即可使用本地文件进行开发调试。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <h3>启动开发服务</h3>
+                <p>在项目目录下运行以下命令启动开发服务：</p>
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="npm-dev">npm</button>
+                    <button class="tab-button" data-tab="yarn-dev">yarn</button>
+                </div>
+                <div class="tab-content active" data-tab="npm-dev">
+                    <pre><code>npm run watch</code></pre>
+                </div>
+                <div class="tab-content" data-tab="yarn-dev">
+                    <pre><code>yarn watch</code></pre>
+                </div>
+                <p>此命令会监听源文件变化并自动重新编译。</p>
+            </li>
+
+            <li>
+                <h3>开发调试</h3>
+                <p>现在您可以：</p>
+                <ul>
+                    <li>修改 <code>src</code> 目录下的源代码</li>
+                    <li>保存后自动重新编译</li>
+                    <li>刷新浏览器页面查看效果</li>
+                </ul>
+                <p>源码修改会自动编译到 <code>dist/index.js</code>，油猴脚本会自动加载最新编译结果。</p>
+            </li>
+        </ol>
+
+        <div class="note">
+            <strong>提示：</strong> 开发完成后，执行 <code>npm run build</code> 或 <code>yarn build</code> 生成发布文件，然后将 <code>dist/index.js</code> 中的内容复制到油猴脚本中即可发布。
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 UserScript Template. All rights reserved.</p>
+</footer>
+
+<div class="image-preview-overlay">
+    <div class="image-preview-container">
+        <button class="close-preview" title="关闭预览 (ESC)"></button>
+        <img src="" alt="预览图片">
+    </div>
+</div>
+
+<script>
+    // 获取仓库 star 数并更新到所有显示位置
+    fetch('https://api.github.com/repos/JSREI/userscript-template')
+        .then(response => response.json())
+        .then(data => {
+            const starCount = data.stargazers_count.toLocaleString();
+            // 更新页面中所有显示 star 数的元素
+            document.querySelectorAll('[id$="star-count"]').forEach(el => {
+                el.textContent = starCount;
+            });
+        })
+        .catch(() => {
+            document.querySelectorAll('[id$="star-count"]').forEach(el => {
+                el.textContent = 'N/A';
+            });
+        });
+
+    // 导航栏激活状态
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('.card');
+    
+    function setActiveNavLink() {
+        const currentScroll = window.scrollY;
+        sections.forEach((section, index) => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            
+            if (currentScroll >= sectionTop && currentScroll < sectionBottom) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                navLinks[index].classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', setActiveNavLink);
+    setActiveNavLink();
+
+    // Tab 切换功能
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const tabGroup = button.closest('.tabs');
+            const tabContents = tabGroup.nextElementSibling;
+            const tabId = button.dataset.tab;
+            
+            // 移除同组所有 tab 的激活状态
+            tabGroup.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // 隐藏同组所有内容
+            let content = tabContents;
+            while(content && content.classList.contains('tab-content')) {
+                content.classList.remove('active');
+                content = content.nextElementSibling;
+            }
+            
+            // 激活当前选中的 tab
+            button.classList.add('active');
+            
+            // 显示对应内容
+            content = tabContents;
+            while(content && content.classList.contains('tab-content')) {
+                if(content.dataset.tab === tabId) {
+                    content.classList.add('active');
+                    break;
+                }
+                content = content.nextElementSibling;
+            }
+        });
+    });
+
+    // 图片预览功能
+    const previewOverlay = document.querySelector('.image-preview-overlay');
+    const previewImage = previewOverlay.querySelector('img');
+    const closeButton = previewOverlay.querySelector('.close-preview');
+
+    // 点击图片打开预览
+    document.querySelectorAll('.demo-image').forEach(img => {
+        img.addEventListener('click', () => {
+            previewImage.src = img.src;
+            previewImage.alt = img.alt;
+            previewOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
+        });
+    });
+
+    // 点击关闭按钮关闭预览
+    closeButton.addEventListener('click', closePreview);
+
+    // 点击背景关闭预览
+    previewOverlay.addEventListener('click', (e) => {
+        if (e.target === previewOverlay) {
+            closePreview();
+        }
+    });
+
+    // ESC 键关闭预览
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && previewOverlay.classList.contains('active')) {
+            closePreview();
+        }
+    });
+
+    function closePreview() {
+        previewOverlay.classList.remove('active');
+        document.body.style.overflow = ''; // 恢复背景滚动
+    }
+
+    // 为所有代码块添加窗口控制按钮
+    document.querySelectorAll('pre').forEach(pre => {
+        // 添加窗口控制按钮
+        const controls = document.createElement('div');
+        controls.className = 'window-controls';
+        controls.innerHTML = `
+            <div class="window-control close"></div>
+            <div class="window-control minimize"></div>
+            <div class="window-control maximize"></div>
+        `;
+        pre.appendChild(controls);
+
+        // 添加复制按钮
+        const button = document.createElement('button');
+        button.className = 'copy-button';
+        button.innerHTML = `
+            <svg viewBox="0 0 24 24">
+                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+            </svg>
+            复制
+        `;
+        
+        button.addEventListener('click', async () => {
+            const code = pre.querySelector('code').innerText;
+            
+            try {
+                await navigator.clipboard.writeText(code);
+                button.classList.add('copied');
+                button.innerHTML = `
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                    已复制
+                `;
+                
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    button.innerHTML = `
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                        </svg>
+                        复制
+                    `;
+                }, 2000);
+            } catch (err) {
+                console.error('复制失败:', err);
+                button.textContent = '复制失败';
+                setTimeout(() => {
+                    button.innerHTML = `
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                        </svg>
+                        复制
+                    `;
+                }, 2000);
+            }
+        });
+
+        pre.appendChild(button);
+    });
+
+    // 处理导航栏固定效果
+    const header = document.querySelector('header');
+    const navContainer = document.querySelector('.nav-container');
+    const headerHeight = header.offsetHeight;
+    let lastScrollTop = 0;
+
+    function handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // 处理 header 样式
+        if (scrollTop > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+
+        // 处理导航栏固定
+        if (scrollTop > headerHeight / 2) {
+            navContainer.classList.add('fixed');
+        } else {
+            navContainer.classList.remove('fixed');
+        }
+
+        lastScrollTop = scrollTop;
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // 初始化状态
+
+    // 折叠面板功能
+    document.querySelectorAll('.collapsible-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const collapsible = header.closest('.collapsible');
+            collapsible.classList.toggle('active');
+        });
+    });
+</script>
+</body>
+</html>
