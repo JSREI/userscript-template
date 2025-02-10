@@ -138,7 +138,7 @@
             }
 
             .nav-container.fixed {
-                top: 10px;
+                top: 0;
                 padding: 5px 0;
             }
 
@@ -562,27 +562,20 @@
             padding: 0;
         }
 
-        .steps li {
+        .steps > li {
             position: relative;
-            padding-left: 45px;
-            margin-bottom: 25px;
+            counter-increment: step;
         }
 
-        .steps li::before {
-            counter-increment: step;
-            content: counter(step);
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 30px;
-            height: 30px;
-            background: #4299e1;
-            color: white;
-            border-radius: 50%;
+        .steps > li h3::before {
+            content: counter(step) ". ";
+            color: #4299e1;
+        }
+
+        .steps > li h3 {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: bold;
+            gap: 8px;
         }
 
         .note {
@@ -749,7 +742,7 @@
             cursor: zoom-in;
         }
 
-        /* 固定导航栏容器 */
+        /* 导航栏容器样式 */
         .nav-container {
             position: absolute;
             left: 0;
@@ -763,21 +756,23 @@
 
         .nav-container.fixed {
             position: fixed;
-            top: 15px;
+            top: 0;
             bottom: auto;
             transform: translateY(0);
             background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
             padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .nav-container.fixed::before {
             content: '';
             position: absolute;
+            top: 0;
             left: 0;
             right: 0;
-            top: -10px;
-            height: 10px;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.95));
+            bottom: 0;
+            backdrop-filter: blur(10px);
+            z-index: -1;
         }
 
         /* 更新仓库链接样式 */
@@ -894,10 +889,14 @@
 
         .collapsible-body img {
             max-width: 100%;
+            height: auto;
             border-radius: 8px;
             margin: 10px 0;
             border: 1px solid rgba(0, 0, 0, 0.1);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            max-height: 300px; /* 限制图片的最大高度 */
+            object-fit: contain; /* 保持图片比例 */
+            cursor: zoom-in; /* 添加放大镜指针 */
         }
 
         /* 更新提示框样式 */
@@ -1338,7 +1337,7 @@ yarn install</code></pre>
     const closeButton = previewOverlay.querySelector('.close-preview');
 
     // 点击图片打开预览
-    document.querySelectorAll('.demo-image').forEach(img => {
+    document.querySelectorAll('.demo-image, .collapsible-body img').forEach(img => {
         img.addEventListener('click', () => {
             previewImage.src = img.src;
             previewImage.alt = img.alt;
@@ -1427,6 +1426,48 @@ yarn install</code></pre>
             }
         });
     });
+
+    // 折叠面板功能
+    document.querySelectorAll('.collapsible-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const collapsible = header.closest('.collapsible');
+            collapsible.classList.toggle('active');
+            const content = collapsible.querySelector('.collapsible-content');
+            if (collapsible.classList.contains('active')) {
+                content.style.maxHeight = content.scrollHeight + "px";
+            } else {
+                content.style.maxHeight = null;
+            }
+        });
+    });
+
+    // 处理导航栏固定效果
+    const header = document.querySelector('header');
+    const navContainer = document.querySelector('.nav-container');
+    const headerHeight = header.offsetHeight;
+    let lastScrollTop = 0;
+
+    function handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > headerHeight / 3) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+
+        // 处理导航栏固定
+        if (scrollTop > headerHeight / 2) {
+            navContainer.classList.add('fixed');
+        } else {
+            navContainer.classList.remove('fixed');
+        }
+
+        lastScrollTop = scrollTop;
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // 初始化状态
 </script>
 </body>
 </html>
