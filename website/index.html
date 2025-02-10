@@ -965,10 +965,9 @@
     <div class="nav-container">
         <nav>
             <ul>
-                <li><a href="#features" class="active">特性</a></li>
+                <li><a href="#features" class="active">核心特性</a>
                 <li><a href="#quick-start">快速开始</a></li>
-                <li><a href="#usage">使用指南</a></li>
-                <li><a href="#repository">GitHub</a></li>
+                <li><a href="#usage">调试指南</a></li>
             </ul>
         </nav>
     </div>
@@ -1024,7 +1023,7 @@
                     <a href="https://github.com/JSREI/userscript-template" target="_blank" class="repo-link">
                         <span class="text">
                             <svg viewBox="0 0 16 16">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.82-1.02-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
                             </svg>
                             前往模板仓库
                         </span>
@@ -1044,8 +1043,31 @@ cd [项目目录]
 npm install</code></pre>
                 </li>
                 <li>
-                    <h3>开发调试</h3>
-                    <pre><code>npm run watch</code></pre>
+                    <h3>启动热编译</h3>
+                    <p>在项目目录下运行以下命令启动开发服务：</p>
+                    <div class="tabs">
+                        <button class="tab-button active" data-tab="hot-watch">hot watch</button>
+                        <button class="tab-button" data-tab="fuck-watch">fuck watch</button>
+                    </div>
+                    <div class="tab-content active" data-tab="hot-watch">
+                        <div class="tabs">
+                            <button class="tab-button active" data-tab="npm-hot">npm</button>
+                            <button class="tab-button" data-tab="yarn-hot">yarn</button>
+                        </div>
+                        <div class="tab-content active" data-tab="npm-hot">
+                            <pre><code>npm run watch</code></pre>
+                        </div>
+                        <div class="tab-content" data-tab="yarn-hot">
+                            <pre><code>yarn watch</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-content" data-tab="fuck-watch">
+                        <pre><code>./fuck-hot-compile.sh</code></pre>
+                        <p class="note" style="margin-top: 10px;">
+                            <strong>说明：</strong> 这是一个简单的 shell 脚本，用于在遇到 hot watch 不工作时的替代方案
+                        </p>
+                    </div>
+                    <p>此命令会监听源文件变化并自动重新编译。</p>
                 </li>
                 <li>
                     <h3>构建发布</h3>
@@ -1082,8 +1104,31 @@ cd [项目目录]
 yarn install</code></pre>
                 </li>
                 <li>
-                    <h3>开发调试</h3>
-                    <pre><code>yarn watch</code></pre>
+                    <h3>启动热编译</h3>
+                    <p>在项目目录下运行以下命令启动开发服务：</p>
+                    <div class="tabs">
+                        <button class="tab-button active" data-tab="hot-watch">hot watch</button>
+                        <button class="tab-button" data-tab="fuck-watch">fuck watch</button>
+                    </div>
+                    <div class="tab-content active" data-tab="hot-watch">
+                        <div class="tabs">
+                            <button class="tab-button active" data-tab="npm-hot">npm</button>
+                            <button class="tab-button" data-tab="yarn-hot">yarn</button>
+                        </div>
+                        <div class="tab-content active" data-tab="npm-hot">
+                            <pre><code>npm run watch</code></pre>
+                        </div>
+                        <div class="tab-content" data-tab="yarn-hot">
+                            <pre><code>yarn watch</code></pre>
+                        </div>
+                    </div>
+                    <div class="tab-content" data-tab="fuck-watch">
+                        <pre><code>./fuck-hot-compile.sh</code></pre>
+                        <p class="note" style="margin-top: 10px;">
+                            <strong>说明：</strong> 这是一个简单的 shell 脚本，用于在遇到 hot watch 不工作时的替代方案
+                        </p>
+                    </div>
+                    <p>此命令会监听源文件变化并自动重新编译。</p>
                 </li>
                 <li>
                     <h3>构建发布</h3>
@@ -1144,17 +1189,29 @@ yarn install</code></pre>
             </li>
 
             <li>
-                <h3>启动开发服务</h3>
+                <h3>启动热编译</h3>
                 <p>在项目目录下运行以下命令启动开发服务：</p>
                 <div class="tabs">
-                    <button class="tab-button active" data-tab="npm-dev">npm</button>
-                    <button class="tab-button" data-tab="yarn-dev">yarn</button>
+                    <button class="tab-button active" data-tab="hot-watch">hot watch</button>
+                    <button class="tab-button" data-tab="fuck-watch">fuck watch</button>
                 </div>
-                <div class="tab-content active" data-tab="npm-dev">
-                    <pre><code>npm run watch</code></pre>
+                <div class="tab-content active" data-tab="hot-watch">
+                    <div class="tabs">
+                        <button class="tab-button active" data-tab="npm-hot">npm</button>
+                        <button class="tab-button" data-tab="yarn-hot">yarn</button>
+                    </div>
+                    <div class="tab-content active" data-tab="npm-hot">
+                        <pre><code>npm run watch</code></pre>
+                    </div>
+                    <div class="tab-content" data-tab="yarn-hot">
+                        <pre><code>yarn watch</code></pre>
+                    </div>
                 </div>
-                <div class="tab-content" data-tab="yarn-dev">
-                    <pre><code>yarn watch</code></pre>
+                <div class="tab-content" data-tab="fuck-watch">
+                    <pre><code>./fuck-hot-compile.sh</code></pre>
+                    <p class="note" style="margin-top: 10px;">
+                        <strong>说明：</strong> 这是一个简单的 shell 脚本，用于在遇到 hot watch 不工作时的替代方案
+                    </p>
                 </div>
                 <p>此命令会监听源文件变化并自动重新编译。</p>
             </li>
@@ -1256,6 +1313,22 @@ yarn install</code></pre>
                 }
                 content = content.nextElementSibling;
             }
+
+            // 如果是 npm/yarn 相关的标签，同步切换其他相同类型的标签
+            if (tabId === 'npm-guide' || tabId === 'yarn-guide' || 
+                tabId === 'npm-hot' || tabId === 'yarn-hot') {
+                const isNpm = tabId.startsWith('npm');
+                // 同步切换所有 npm/yarn 标签
+                document.querySelectorAll('.tab-button[data-tab^="npm"], .tab-button[data-tab^="yarn"]').forEach(btn => {
+                    if (btn !== button) {  // 避免重复切换当前标签
+                        const newTabId = isNpm ? btn.dataset.tab.replace('yarn', 'npm') : btn.dataset.tab.replace('npm', 'yarn');
+                        const targetButton = btn.closest('.tabs').querySelector(`.tab-button[data-tab="${newTabId}"]`);
+                        if (targetButton) {
+                            targetButton.click();
+                        }
+                    }
+                });
+            }
         });
     });
 
@@ -1352,45 +1425,6 @@ yarn install</code></pre>
                     `;
                 }, 2000);
             }
-        });
-
-        pre.appendChild(button);
-    });
-
-    // 处理导航栏固定效果
-    const header = document.querySelector('header');
-    const navContainer = document.querySelector('.nav-container');
-    const headerHeight = header.offsetHeight;
-    let lastScrollTop = 0;
-
-    function handleScroll() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // 处理 header 样式
-        if (scrollTop > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-
-        // 处理导航栏固定
-        if (scrollTop > headerHeight / 2) {
-            navContainer.classList.add('fixed');
-        } else {
-            navContainer.classList.remove('fixed');
-        }
-
-        lastScrollTop = scrollTop;
-    }
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // 初始化状态
-
-    // 折叠面板功能
-    document.querySelectorAll('.collapsible-header').forEach(header => {
-        header.addEventListener('click', () => {
-            const collapsible = header.closest('.collapsible');
-            collapsible.classList.toggle('active');
         });
     });
 </script>
