@@ -131,6 +131,42 @@ In addition to variable substitution, all other content will be preserved as is,
 
 ![image-20230817004653299](README.assets/image-20230817004653299.png)
 
+## Banner Support
+
+The project supports adding custom banners to the compiled code. In the `banner.txt` file in the project root directory, you can add ASCII art or other decorative text:
+
+```
+▗▄▄▄▖▗▖  ▗▖▗▄▄▖ ▗▄▄▄▖ ▗▄▄▖ ▗▄▄▖▗▄▄▖ ▗▄▄▄▖▗▄▄▖▗▄▄▄▖
+  █   ▝▚▞▘ ▐▌ ▐▌▐▌   ▐▌   ▐▌   ▐▌ ▐▌  █  ▐▌ ▐▌ █
+  █    ▐▌  ▐▛▀▘ ▐▛▀▀▘ ▝▀▚▖▐▌   ▐▛▀▚▖  █  ▐▛▀▘  █
+  █    ▐▌  ▐▌   ▐▙▄▄▖▗▄▄▞▘▝▚▄▄▖▐▌ ▐▌▗▄█▄▖▐▌    █
+```
+
+During compilation, the banner content will be automatically inserted into the userscript header comments, supporting the following variable substitutions:
+- `${name}` - Project name
+- `${version}` - Version number
+- `${description}` - Project description
+- `${author}` - Author information
+- `${repository}` - Repository address
+- `${namespace}` - Namespace
+- `${document}` - Document address
+
+Compiled result:
+```javascript
+// ==UserScript==
+// @name         my-project
+// @version      1.0.0
+// ...
+// ==/UserScript==
+
+//    ▗▄▄▄▖▗▖  ▗▖▗▄▄▖ ▗▄▄▄▖ ▗▄▄▖ ▗▄▄▖▗▄▄▖ ▗▄▄▄▖▗▄▄▖▗▄▄▄▖
+//      █   ▝▚▞▘ ▐▌ ▐▌▐▌   ▐▌   ▐▌   ▐▌ ▐▌  █  ▐▌ ▐▌ █
+//      █    ▐▌  ▐▛▀▘ ▐▛▀▀▘ ▝▀▚▖▐▌   ▐▛▀▚▖  █  ▐▛▀▘  █
+//      █    ▐▌  ▐▌   ▐▙▄▄▖▗▄▄▞▘▝▚▄▄▖▐▌ ▐▌▗▄█▄▖▐▌    █
+
+// Your code...
+```
+
 Then you can happily start coding. While writing code, you can use the `npm` command to add dependencies to your project. For a slightly more complex script, it is very likely to reference external dependencies:
 
 ```bash
