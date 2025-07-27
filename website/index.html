@@ -709,13 +709,15 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            border-radius: 8px;
+            padding: 10px 18px;
+            border-radius: 12px;
             text-decoration: none;
             color: #4a5568;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
         }
 
         .navbar-link:hover {
@@ -725,33 +727,89 @@
         }
 
         .navbar-link.github {
-            background: linear-gradient(135deg, #24292e, #444d56);
-            color: white;
-            border-color: #24292e;
+            background: linear-gradient(135deg, #0d1117 0%, #21262d 50%, #30363d 100%);
+            color: #f0f6fc;
+            border: 1px solid rgba(240, 246, 252, 0.1);
+            box-shadow:
+                0 1px 3px rgba(0, 0, 0, 0.12),
+                0 1px 2px rgba(0, 0, 0, 0.24),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-link.github::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .navbar-link.github:hover {
-            background: linear-gradient(135deg, #1a1e22, #2f363d);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(36, 41, 46, 0.3);
+            background: linear-gradient(135deg, #161b22 0%, #30363d 50%, #484f58 100%);
+            transform: translateY(-2px);
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.15),
+                0 2px 4px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: rgba(240, 246, 252, 0.2);
+        }
+
+        .navbar-link.github:hover::before {
+            opacity: 1;
         }
 
         .navbar-link.jsrei {
-            background: linear-gradient(135deg, #4299e1, #667eea);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             color: white;
-            border-color: #4299e1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow:
+                0 1px 3px rgba(102, 126, 234, 0.3),
+                0 1px 2px rgba(102, 126, 234, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .navbar-link.jsrei::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .navbar-link.jsrei:hover {
-            background: linear-gradient(135deg, #3182ce, #5a67d8);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 50%, #ec4899 100%);
+            transform: translateY(-2px);
+            box-shadow:
+                0 4px 15px rgba(102, 126, 234, 0.4),
+                0 2px 8px rgba(102, 126, 234, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .navbar-link.jsrei:hover::before {
+            opacity: 1;
         }
 
         .navbar-link svg {
             width: 18px;
             height: 18px;
             fill: currentColor;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+        }
+
+        .navbar-link span {
+            font-weight: 600;
+            letter-spacing: 0.025em;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
 
         /* 为页面内容添加顶部间距 */
