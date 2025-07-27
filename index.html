@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UserScript Template - 油猴脚本开发模板</title>
+    <title>UserScript Template - 现代化油猴脚本开发模板</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -960,7 +960,36 @@
 <body>
 <header>
     <h1>UserScript Template</h1>
-    <p>使用 Node.js + Webpack 模块化开发油猴脚本的高效方案</p>
+    <p>现代化油猴脚本开发模板 - 支持模块化开发、热加载、npm包管理</p>
+
+    <div class="github-stats">
+        <a href="https://github.com/JSREI/userscript-template" target="_blank" class="github-link">
+            <span class="text">
+                <svg viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+                GitHub 仓库
+            </span>
+            <span class="star-count">
+                <svg viewBox="0 0 16 16">
+                    <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
+                </svg>
+                <span id="header-star-count">Loading...</span>
+            </span>
+        </a>
+
+        <a href="https://www.npmjs.com/package/@javascript-reverse-engineering-infrastructure/create-userscript" target="_blank" class="github-link" style="background: linear-gradient(135deg, #cb3837, #ff6b6b);">
+            <span class="text">
+                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px;">
+                    <path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z" fill="currentColor"/>
+                </svg>
+                npm 包
+            </span>
+            <span class="star-count">
+                <span>v1.0.0</span>
+            </span>
+        </a>
+    </div>
     <div class="nav-container">
     <nav>
         <ul>
@@ -978,17 +1007,31 @@
         <h2>核心特性</h2>
         <div class="feature-grid">
             <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-text">
+                    <h3>一键创建项目</h3>
+                    <p>通过 npm 命令一键创建项目，无需手动配置，开箱即用</p>
+                </div>
+            </div>
+            <div class="feature-item">
                 <div class="feature-icon">📦</div>
                 <div class="feature-text">
                     <h3>模块化开发</h3>
-                    <p>不再需要在单个 JavaScript 文件中组织代码，而是采用WebPack模块化管理代码，提升开发体验与效率</p>
+                    <p>使用 Webpack 模块化管理代码，告别单文件开发的痛苦</p>
                 </div>
             </div>
             <div class="feature-item">
                 <div class="feature-icon">🔄</div>
                 <div class="feature-text">
                     <h3>热加载支持</h3>
-                    <p>开发时修改代码自动编译打包加载，让测试更高效</p>
+                    <p>开发时修改代码自动编译，实时预览效果</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎨</div>
+                <div class="feature-text">
+                    <h3>Banner 支持</h3>
+                    <p>支持自定义 ASCII 艺术字，让你的脚本更有个性</p>
                 </div>
             </div>
             <div class="feature-item">
@@ -998,11 +1041,11 @@
                     <p>打包后为高可读性的单文件，完全符合油猴商店上架政策</p>
                 </div>
             </div>
-            <div class="feature">
+            <div class="feature-item">
                 <div class="feature-icon">🚀</div>
                 <div class="feature-text">
                     <h3>发布友好</h3>
-                    <p>打包后生成高可读性的单文件脚本，完全符合油猴商店的上架要求，无需额外处理</p>
+                    <p>一键构建发布版本，无需额外处理即可上架</p>
                 </div>
             </div>
         </div>
@@ -1025,12 +1068,21 @@
                     </div>
 
                     <div class="tab-content active" data-tab="npm-create">
-                        <p>使用 npm 命令直接创建新项目：</p>
-                        <pre><code>npm create @javascript-reverse-engineering-infrastructure/userscript my-userscript</code></pre>
-                        <p>或者使用 npx：</p>
-                        <pre><code>npx @javascript-reverse-engineering-infrastructure/create-userscript my-userscript</code></pre>
-                        <p>然后进入项目目录：</p>
-                        <pre><code>cd my-userscript</code></pre>
+                        <p><strong>推荐方式</strong> - 使用 npm 命令一键创建项目：</p>
+                        <pre><code># 使用 npm create（推荐）
+npm create @javascript-reverse-engineering-infrastructure/userscript my-userscript
+
+# 或者使用 npx
+npx @javascript-reverse-engineering-infrastructure/create-userscript my-userscript
+
+# 进入项目目录
+cd my-userscript
+
+# 安装依赖
+npm install</code></pre>
+                        <div class="note">
+                            <strong>优势：</strong> 自动配置所有必要文件，包括 webpack 配置、package.json、banner.txt 等，开箱即用！
+                        </div>
                     </div>
 
                     <div class="tab-content" data-tab="github-template">
@@ -1053,14 +1105,22 @@
                     </div>
                 </li>
                 <li>
-                    <h3>安装依赖</h3>
-                    <pre><code>git clone [你的仓库地址]
-cd [项目目录]
-npm install</code></pre>
+                    <h3>开始开发</h3>
+                    <p>项目创建完成后，你就可以开始开发了！项目结构如下：</p>
+                    <pre><code>my-userscript/
+├── src/                 # 源代码目录
+│   ├── index.js        # 入口文件
+│   ├── foo_module/     # 示例模块
+│   └── bar_module/     # 示例模块
+├── dist/               # 编译输出目录
+├── banner.txt          # Banner 文件
+├── userscript-headers.js # 油猴脚本头部配置
+├── webpack.*.js        # Webpack 配置
+└── package.json        # 项目配置</code></pre>
                 </li>
                 <li>
-                    <h3>启动热编译</h3>
-                    <p>在项目目录下运行以下命令启动开发服务：</p>
+                    <h3>启动开发模式</h3>
+                    <p>在项目目录下运行以下命令启动开发服务，支持热重载：</p>
                     <div class="tabs">
                         <button class="tab-button active" data-tab="hot-watch">hot watch</button>
                         <button class="tab-button" data-tab="fuck-watch">fuck watch</button>
