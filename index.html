@@ -702,67 +702,17 @@
         .navbar-links {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
         }
 
-        .navbar-link {
+        /* JSREI 组织按钮样式 */
+        .jsrei-link {
             display: flex;
             align-items: center;
             gap: 8px;
             padding: 10px 18px;
             border-radius: 12px;
             text-decoration: none;
-            color: #4a5568;
-            font-weight: 500;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .navbar-link:hover {
-            background: rgba(66, 153, 225, 0.1);
-            color: #4299e1;
-            border-color: rgba(66, 153, 225, 0.2);
-        }
-
-        .navbar-link.github {
-            background: linear-gradient(135deg, #0d1117 0%, #21262d 50%, #30363d 100%);
-            color: #f0f6fc;
-            border: 1px solid rgba(240, 246, 252, 0.1);
-            box-shadow:
-                0 1px 3px rgba(0, 0, 0, 0.12),
-                0 1px 2px rgba(0, 0, 0, 0.24),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .navbar-link.github::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .navbar-link.github:hover {
-            background: linear-gradient(135deg, #161b22 0%, #30363d 50%, #484f58 100%);
-            transform: translateY(-2px);
-            box-shadow:
-                0 4px 12px rgba(0, 0, 0, 0.15),
-                0 2px 4px rgba(0, 0, 0, 0.12),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            border-color: rgba(240, 246, 252, 0.2);
-        }
-
-        .navbar-link.github:hover::before {
-            opacity: 1;
-        }
-
-        .navbar-link.jsrei {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -771,9 +721,11 @@
                 0 1px 2px rgba(102, 126, 234, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
             position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .navbar-link.jsrei::before {
+        .jsrei-link::before {
             content: '';
             position: absolute;
             top: 0;
@@ -785,7 +737,7 @@
             transition: opacity 0.3s ease;
         }
 
-        .navbar-link.jsrei:hover {
+        .jsrei-link:hover {
             background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 50%, #ec4899 100%);
             transform: translateY(-2px);
             box-shadow:
@@ -795,22 +747,88 @@
             border-color: rgba(255, 255, 255, 0.3);
         }
 
-        .navbar-link.jsrei:hover::before {
+        .jsrei-link:hover::before {
             opacity: 1;
         }
 
-        .navbar-link svg {
+        .jsrei-link span {
+            font-weight: 600;
+            letter-spacing: 0.025em;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .jsrei-link svg {
             width: 18px;
             height: 18px;
             fill: currentColor;
             filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
         }
 
-        .navbar-link span {
-            font-weight: 600;
-            letter-spacing: 0.025em;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        /* GitHub 徽标样式 */
+        .github-badge {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            background: #24292f;
+            color: #f0f6fc;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+            position: relative;
         }
+
+        .github-badge:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .github-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            background: #24292f;
+        }
+
+        .github-info svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .github-info span {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .github-stars {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 8px;
+            background: #f6f8fa;
+            color: #24292f;
+            border-left: 1px solid #d1d9e0;
+        }
+
+        .github-stars svg {
+            width: 12px;
+            height: 12px;
+            fill: #656d76;
+        }
+
+        .github-stars span {
+            font-size: 12px;
+            font-weight: 600;
+            color: #24292f;
+        }
+
+        .github-badge[title] {
+            cursor: pointer;
+        }
+
+
 
         /* 为页面内容添加顶部间距 */
         body {
@@ -1170,18 +1188,26 @@
     </a>
 
     <div class="navbar-links">
-        <a href="https://github.com/JSREI/userscript-template" target="_blank" class="navbar-link github">
-            <svg viewBox="0 0 16 16">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-            </svg>
-            <span>GitHub</span>
-        </a>
-
-        <a href="https://jsrei.org/" target="_blank" class="navbar-link jsrei">
+        <a href="https://jsrei.org/" target="_blank" class="jsrei-link">
             <svg viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/>
             </svg>
-            <span>JSREI</span>
+            <span>JSREI组织首页</span>
+        </a>
+
+        <a href="https://github.com/JSREI/userscript-template" target="_blank" class="github-badge" title="Star me on GitHub">
+            <div class="github-info">
+                <svg viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+                <span>Star</span>
+            </div>
+            <div class="github-stars">
+                <svg viewBox="0 0 16 16">
+                    <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/>
+                </svg>
+                <span id="navbar-star-count">...</span>
+            </div>
         </a>
     </div>
 </nav>
@@ -1572,21 +1598,60 @@ yarn install</code></pre>
 </div>
 
 <script>
-    // 获取仓库 star 数并更新到所有显示位置
-    fetch('https://api.github.com/repos/JSREI/userscript-template')
-        .then(response => response.json())
-        .then(data => {
-            const starCount = data.stargazers_count.toLocaleString();
-            // 更新页面中所有显示 star 数的元素
-            document.querySelectorAll('[id$="star-count"]').forEach(el => {
-                el.textContent = starCount;
-            });
-        })
-        .catch(() => {
-            document.querySelectorAll('[id$="star-count"]').forEach(el => {
-                el.textContent = 'N/A';
-            });
+    // GitHub Star 数缓存管理
+    const CACHE_KEY = 'github_stars_cache';
+    const CACHE_DURATION = 60 * 60 * 1000; // 1小时缓存
+
+    function getCachedStarCount() {
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached) {
+            const { data, timestamp } = JSON.parse(cached);
+            if (Date.now() - timestamp < CACHE_DURATION) {
+                return data;
+            }
+        }
+        return null;
+    }
+
+    function setCachedStarCount(starCount) {
+        const cacheData = {
+            data: starCount,
+            timestamp: Date.now()
+        };
+        localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+    }
+
+    function updateStarCount(starCount) {
+        // 更新页面中所有显示 star 数的元素
+        document.querySelectorAll('[id$="star-count"]').forEach(el => {
+            el.textContent = starCount;
         });
+    }
+
+    // 获取仓库 star 数
+    function fetchStarCount() {
+        // 先检查缓存
+        const cachedStarCount = getCachedStarCount();
+        if (cachedStarCount) {
+            updateStarCount(cachedStarCount);
+            return;
+        }
+
+        // 缓存过期或不存在，从 API 获取
+        fetch('https://api.github.com/repos/JSREI/userscript-template')
+            .then(response => response.json())
+            .then(data => {
+                const starCount = data.stargazers_count.toLocaleString();
+                updateStarCount(starCount);
+                setCachedStarCount(starCount);
+            })
+            .catch(() => {
+                updateStarCount('N/A');
+            });
+    }
+
+    // 页面加载时获取 star 数
+    fetchStarCount();
 
     // 导航栏激活状态
     const navLinks = document.querySelectorAll('nav a');
