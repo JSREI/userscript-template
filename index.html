@@ -966,6 +966,7 @@
         <ul>
                 <li><a href="#features" class="active">核心特性</a>
             <li><a href="#quick-start">快速开始</a></li>
+                <li><a href="#banner">Banner支持</a></li>
                 <li><a href="#usage">调试指南</a></li>
         </ul>
     </nav>
@@ -1018,22 +1019,38 @@
             <ol class="steps">
                 <li>
                     <h3>创建项目</h3>
-                    <p>在 GitHub 模板仓库选择 "Use this template" 创建新仓库</p>
-                    <a href="https://github.com/JSREI/userscript-template" target="_blank" class="repo-link">
-                        <span class="text">
-                            <svg viewBox="0 0 16 16">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.82-1.02-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                            </svg>
-                            前往模板仓库
-                        </span>
-                        <span class="star-count">
-                            <svg viewBox="0 0 16 16">
-                                <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
-                            </svg>
-                            <span id="quick-start-star-count">Loading...</span>
-                        </span>
-                    </a>
-                    <img src="images/image-20230816233501101.png" alt="创建项目示例" class="demo-image">
+                    <div class="tabs">
+                        <button class="tab-button active" data-tab="npm-create">npm 创建（推荐）</button>
+                        <button class="tab-button" data-tab="github-template">GitHub 模板</button>
+                    </div>
+
+                    <div class="tab-content active" data-tab="npm-create">
+                        <p>使用 npm 命令直接创建新项目：</p>
+                        <pre><code>npm create @javascript-reverse-engineering-infrastructure/userscript my-userscript</code></pre>
+                        <p>或者使用 npx：</p>
+                        <pre><code>npx @javascript-reverse-engineering-infrastructure/create-userscript my-userscript</code></pre>
+                        <p>然后进入项目目录：</p>
+                        <pre><code>cd my-userscript</code></pre>
+                    </div>
+
+                    <div class="tab-content" data-tab="github-template">
+                        <p>在 GitHub 模板仓库选择 "Use this template" 创建新仓库</p>
+                        <a href="https://github.com/JSREI/userscript-template" target="_blank" class="repo-link">
+                            <span class="text">
+                                <svg viewBox="0 0 16 16">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.82-1.02-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                                </svg>
+                                前往模板仓库
+                            </span>
+                            <span class="star-count">
+                                <svg viewBox="0 0 16 16">
+                                    <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
+                                </svg>
+                                <span id="quick-start-star-count">Loading...</span>
+                            </span>
+                        </a>
+                        <img src="images/image-20230816233501101.png" alt="创建项目示例" class="demo-image">
+                    </div>
                 </li>
                 <li>
                     <h3>安装依赖</h3>
@@ -1135,6 +1152,57 @@ yarn install</code></pre>
                 </li>
             </ol>
         </div>
+    </div>
+
+    <div class="card" id="banner">
+        <h2>Banner 支持</h2>
+        <p>项目支持在编译后的代码中添加自定义 banner。在项目根目录的 <code>banner.txt</code> 文件中，你可以添加 ASCII 艺术字或其他装饰性文本。</p>
+
+        <h3>使用方法</h3>
+        <p>在项目根目录创建或编辑 <code>banner.txt</code> 文件：</p>
+        <pre><code>▗▄▄▄▖▗▖  ▗▖▗▄▄▖ ▗▄▄▄▖ ▗▄▄▖ ▗▄▄▖▗▄▄▖ ▗▄▄▄▖▗▄▄▖▗▄▄▄▖
+  █   ▝▚▞▘ ▐▌ ▐▌▐▌   ▐▌   ▐▌   ▐▌ ▐▌  █  ▐▌ ▐▌ █
+  █    ▐▌  ▐▛▀▘ ▐▛▀▀▘ ▝▀▚▖▐▌   ▐▛▀▚▖  █  ▐▛▀▘  █
+  █    ▐▌  ▐▌   ▐▙▄▄▖▗▄▄▞▘▝▚▄▄▖▐▌ ▐▌▗▄█▄▖▐▌    █
+
+
+▗▖ ▗▖ ▗▄▄▖▗▄▄▄▖▗▄▄▖  ▗▄▄▖ ▗▄▄▖▗▄▄▖ ▗▄▄▄▖▗▄▄▖▗▄▄▄▖
+▐▌ ▐▌▐▌   ▐▌   ▐▌ ▐▌▐▌   ▐▌   ▐▌ ▐▌  █  ▐▌ ▐▌ █
+▐▌ ▐▌ ▝▀▚▖▐▛▀▀▘▐▛▀▚▖ ▝▀▚▖▐▌   ▐▛▀▚▖  █  ▐▛▀▘  █
+▝▚▄▞▘▗▄▄▞▘▐▙▄▄▖▐▌ ▐▌▗▄▄▞▘▝▚▄▄▖▐▌ ▐▌▗▄█▄▖▐▌    █
+
+
+▗▄▄▄▖▗▄▄▄▖▗▖  ▗▖▗▄▄▖ ▗▖    ▗▄▖▗▄▄▄▖▗▄▄▄▖
+  █  ▐▌   ▐▛▚▞▜▌▐▌ ▐▌▐▌   ▐▌ ▐▌ █  ▐▌
+  █  ▐▛▀▀▘▐▌  ▐▌▐▛▀▘ ▐▌   ▐▛▀▜▌ █  ▐▛▀▀▘
+  █  ▐▙▄▄▖▐▌  ▐▌▐▌   ▐▙▄▄▖▐▌ ▐▌ █  ▐▙▄▄▖</code></pre>
+
+        <h3>变量替换</h3>
+        <p>Banner 内容支持以下变量替换：</p>
+        <ul>
+            <li><code>${name}</code> - 项目名称</li>
+            <li><code>${version}</code> - 版本号</li>
+            <li><code>${description}</code> - 项目描述</li>
+            <li><code>${author}</code> - 作者信息</li>
+            <li><code>${repository}</code> - 仓库地址</li>
+            <li><code>${namespace}</code> - 命名空间</li>
+            <li><code>${document}</code> - 文档地址</li>
+        </ul>
+
+        <h3>编译后效果</h3>
+        <p>编译时，banner 内容会被自动插入到油猴脚本头部注释中：</p>
+        <pre><code>// ==UserScript==
+// @name         my-project
+// @version      1.0.0
+// ...
+// ==/UserScript==
+
+//    ▗▄▄▄▖▗▖  ▗▖▗▄▄▖ ▗▄▄▄▖ ▗▄▄▖ ▗▄▄▖▗▄▄▖ ▗▄▄▄▖▗▄▄▖▗▄▄▄▖
+//      █   ▝▚▞▘ ▐▌ ▐▌▐▌   ▐▌   ▐▌   ▐▌ ▐▌  █  ▐▌ ▐▌ █
+//      █    ▐▌  ▐▛▀▘ ▐▛▀▀▘ ▝▀▚▖▐▌   ▐▛▀▚▖  █  ▐▛▀▘  █
+//      █    ▐▌  ▐▌   ▐▙▄▄▖▗▄▄▞▘▝▚▄▄▖▐▌ ▐▌▗▄█▄▖▐▌    █
+
+// 你的代码...</code></pre>
     </div>
 
     <div class="card" id="usage">
