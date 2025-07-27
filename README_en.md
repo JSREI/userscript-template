@@ -14,6 +14,29 @@ A plan for using `Node.js` + `Webpack` for modular development of Tampermonkey s
 
 # 3. Quick Start
 
+## Method 1: Using npm command (Recommended)
+
+Create a new project directly using npm command:
+
+```bash
+npm create @javascript-reverse-engineering-infrastructure/userscript my-userscript
+```
+
+Or using npx:
+
+```bash
+npx @javascript-reverse-engineering-infrastructure/create-userscript my-userscript
+```
+
+Then enter the project directory and install dependencies:
+
+```bash
+cd my-userscript
+npm install
+```
+
+## Method 2: Create from GitHub template
+
 To quickly get started with the project template, follow these steps:
 
 1. Go to the repository at [https://github.com/JSREI/userscript-template](https://github.com/JSREI/userscript-template).

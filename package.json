@@ -1,11 +1,22 @@
 {
-  "name": "userscript-foo",
-  "version": "0.0.1",
-  "description": "this is userscript's description",
+  "name": "@javascript-reverse-engineering-infrastructure/create-userscript",
+  "version": "1.0.0",
+  "description": "A template for developing userscripts with Node.js and Webpack",
   "main": "index.js",
+  "bin": {
+    "create-userscript-template": "./bin/create-userscript.js"
+  },
   "repository": "https://github.com/JSREI/userscript-template.git",
   "namespace": "https://github.com/JSREI/userscript-template.git",
   "document": "https://github.com/JSREI/userscript-template.git",
+  "keywords": [
+    "userscript",
+    "tampermonkey",
+    "greasemonkey",
+    "template",
+    "webpack",
+    "create"
+  ],
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "watch": "webpack --watch --config webpack.dev.js"
@@ -16,5 +27,11 @@
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-merge": "^5.9.0"
-  }
+  },
+  "files": [
+    "bin/",
+    "template/",
+    "README.md",
+    "LICENSE"
+  ]
 }

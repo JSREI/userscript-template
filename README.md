@@ -16,7 +16,30 @@
 
 # 三、快速开始
 
-在当前仓库（https://github.com/JSREI/userscript-template）选择“`Use this template`” --> “`Create a new repository`”，从这个模板仓库创建一个新的仓库： 
+## 方式一：使用npm命令创建（推荐）
+
+使用npm命令直接创建新项目：
+
+```bash
+npm create @javascript-reverse-engineering-infrastructure/userscript my-userscript
+```
+
+或者使用npx：
+
+```bash
+npx @javascript-reverse-engineering-infrastructure/create-userscript my-userscript
+```
+
+然后进入项目目录并安装依赖：
+
+```bash
+cd my-userscript
+npm install
+```
+
+## 方式二：从GitHub模板创建
+
+在当前仓库（https://github.com/JSREI/userscript-template）选择“`Use this template`” --> “`Create a new repository`”，从这个模板仓库创建一个新的仓库：
 
 ![image-20230816233501101](README.assets/image-20230816233501101.png)
 
